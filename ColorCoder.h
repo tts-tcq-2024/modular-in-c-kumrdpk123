@@ -1,30 +1,30 @@
-#include <stdio.h>
-#include <assert.h> 
+#ifndef COLORCODER_H
+#define COLORCODER_H
 
-enum MajorColor {WHITE, RED, BLACK, YELLOW, VIOLET};
-enum MinorColor {BLUE, ORANGE, GREEN, BROWN, SLATE};
+typedef enum {
+    WHITE, RED, BLACK, YELLOW, VIOLET
+} MajorColor;
 
-const char* MajorColorNames[] = {
-    "White", "Red", "Black", "Yellow", "Violet"
-};
-int numberOfMajorColors =
-    sizeof(MajorColorNames) / sizeof(MajorColorNames[0]);
-const char* MinorColorNames[] = {
-    "Blue", "Orange", "Green", "Brown", "Slate"
-};
-const int MAX_COLORPAIR_NAME_CHARS = 16;
-int numberOfMinorColors =
-    sizeof(MinorColorNames) / sizeof(MinorColorNames[0]);
+typedef enum {
+    BLUE, ORANGE, GREEN, BROWN, SLATE
+} MinorColor;
 
 typedef struct {
-    enum MajorColor majorColor;
-    enum MinorColor minorColor;
+    MajorColor majorColor;
+    MinorColor minorColor;
 } ColorPair;
 
-void ColorPairToString(const ColorPair* colorPair, char* buffer) {
-    sprintf(buffer, "%s %s",
-        MajorColorNames[colorPair->majorColor],
-        MinorColorNames[colorPair->minorColor]);
+extern const char* MajorColorNames[];
+extern const char* MinorColorNames[];
+extern const int MAX_COLORPAIR_NAME_CHARS;
+extern const int numberOfMajorColors;
+extern const int numberOfMinorColors;
+
+void ColorPairToString(const ColorPair* colorPair, char* buffer);
+ColorPair GetColorFromPairNumber(int pairNumber);
+int GetPairNumberFromColor(const ColorPair* colorPair);
+void PrintColorCodingReference();
+#endif // COLORCODER_Hr]);
 }
 
 ColorPair GetColorFromPairNumber(int pairNumber) {
